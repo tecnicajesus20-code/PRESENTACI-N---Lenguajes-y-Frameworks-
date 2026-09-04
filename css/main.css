@@ -1,0 +1,90 @@
+/* ==========================================
+   MAIN.CSS - Variables de Tema, Reset & Estilos Base
+   ========================================== */
+
+   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+   :root {
+     /* Paleta de Colores - Dark Glassmorphic con Acentos Neón */
+     --bg-dark: #090d16;
+     --bg-card: rgba(16, 23, 42, 0.65);
+     --bg-card-hover: rgba(24, 34, 60, 0.8);
+     --bg-header: rgba(9, 13, 22, 0.85);
+     --border-color: rgba(255, 255, 255, 0.08);
+     --border-glow: rgba(6, 182, 212, 0.3);
+   
+     /* Acentos Neón */
+     --accent-cyan: #06b6d4;
+     --accent-purple: #a855f7;
+     --accent-emerald: #10b981;
+     --accent-blue: #3b82f6;
+     --accent-amber: #f59e0b;
+   
+     /* Gradientes */
+     --gradient-primary: linear-gradient(135deg, #06b6d4 0%, #a855f7 100%);
+     --gradient-emerald: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+     --gradient-purple: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+   
+     /* Colores de Texto */
+     --text-main: #f1f5f9;
+     --text-muted: #94a3b8;
+     --text-dim: #64748b;
+   
+     /* Tipografía */
+     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+     --font-mono: 'JetBrains Mono', monospace;
+   
+     /* Glassmorphism */
+     --glass-backdrop: blur(16px) saturate(180%);
+     --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(6, 182, 212, 0.05);
+   
+     /* Transiciones */
+     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+     --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+   }
+   
+   *, *::before, *::after {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+   }
+   
+   html {
+     scroll-behavior: smooth;
+     font-family: var(--font-sans);
+     background-color: var(--bg-dark);
+     color: var(--text-main);
+     font-size: 16px;
+     line-height: 1.6;
+   }
+   
+   body {
+     background-color: var(--bg-dark);
+     background-image: 
+       radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+       radial-gradient(circle at 85% 65%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+     background-attachment: fixed;
+     min-height: 100vh;
+     overflow-x: hidden;
+     -webkit-font-smoothing: antialiased;
+   }
+   
+   h1, h2, h3, h4, h5, h6 {
+     color: var(--text-main);
+     font-weight: 700;
+     line-height: 1.2;
+   }
+   
+   a {
+     color: inherit;
+     text-decoration: none;
+     transition: color var(--transition-fast);
+   }
+   
+   ul, ol {
+     list-style: none;
+   }
+   
+   code, pre {
+     font-family: var(--font-mono);
+   }

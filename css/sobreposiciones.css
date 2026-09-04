@@ -1,0 +1,211 @@
+/* sobreposiciones.css — solo interacción de lenguajes/frameworks */
+
+.languages-grid .lang-card {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    cursor: pointer;
+}
+
+.languages-grid .lang-card.lang-card-collapsed {
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.languages-grid .lang-card.lang-card-collapsed > .lang-card-header,
+.languages-grid .lang-card.lang-card-collapsed > .lang-card-body {
+    display: none ;
+}
+.none {
+    display: none;
+}
+.lang-card-body{
+    display: none;
+}
+
+.lang-logo-trigger {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    width: 100%;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    cursor: pointer;
+    padding: 28px;
+    font: inherit;
+}
+
+.lang-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    transition: transform .3s ease;
+}
+
+.lang-logo-trigger:hover .lang-logo { transform: scale(1.08); }
+
+.logo-trigger-hint {
+    font-size: .85rem;
+    font-weight: 700;
+    opacity: .7;
+    text-transform: uppercase;
+}
+
+.lang-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgba(7,13,24,.78);
+    backdrop-filter: blur(8px);
+    animation: langOverlayIn .2s ease both;
+}
+
+.lang-overlay.is-closing { animation: langOverlayOut .18s ease both; }
+
+.lang-overlay-panel {
+    position: relative;
+    width: min(920px,100%);
+    max-height: 88vh;
+    overflow-y: auto;
+    border-radius: 22px;
+    padding: 30px;
+    background: var(--card-bg,#fff);
+    color: var(--text-color,#111827);
+    box-shadow: 0 30px 80px rgba(0,0,0,.35);
+    animation: langPanelIn .28s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.lang-overlay-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    background: rgba(127,127,127,.13);
+    color: inherit;
+}
+
+.lang-overlay-heading {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding-right: 48px;
+    margin-bottom: 24px;
+}
+
+.lang-overlay-heading img {
+    width: 86px;
+    height: 86px;
+    object-fit: contain;
+}
+
+.lang-overlay-title { margin: 0 0 10px; }
+
+.lang-overlay-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.lang-overlay-characteristics {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.lang-characteristic {
+    border-radius: 14px;
+    padding: 16px;
+    font-weight: 800;
+    text-align: center;
+    background: rgba(59,130,246,.10);
+    border: 1px solid rgba(59,130,246,.20);
+}
+
+body.lang-overlay-open { overflow: hidden; }
+
+/* Tabla plegable */
+.framework-table-wrapper { overflow-x: auto; }
+.framework-summary-row { cursor: pointer; }
+.framework-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+    padding: 8px 4px;
+}
+.framework-toggle-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-weight: 900;
+    background: rgba(127,127,127,.14);
+    transition: transform .2s ease;
+}
+.framework-summary-row.is-open .framework-toggle-icon { transform: rotate(45deg); }
+.framework-detail-row[hidden] { display: none; }
+.framework-detail-row > td { padding: 0 !important; border-top: 0 !important; }
+.framework-detail-content {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px 20px;
+    padding: 18px 22px 22px 52px;
+    background: rgba(127,127,127,.07);
+    animation: frameworkDetailsIn .22s ease both;
+}
+.framework-logo-cell { width: 90px; text-align: center; }
+.framework-logo {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+.lang-logo-trigger:focus-visible,
+.framework-toggle:focus-visible,
+.lang-overlay-close:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+}
+
+@keyframes langOverlayIn { from{opacity:0} to{opacity:1} }
+@keyframes langOverlayOut { from{opacity:1} to{opacity:0} }
+@keyframes langPanelIn {
+    from{opacity:0;transform:translateY(20px) scale(.97)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes frameworkDetailsIn {
+    from{opacity:0;transform:translateY(-6px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+@media (max-width:700px) {
+    .lang-overlay { padding: 12px; }
+    .lang-overlay-panel { padding: 22px; max-height: 94vh; }
+    .lang-overlay-heading { align-items:flex-start; gap:14px; }
+    .lang-overlay-heading img { width:64px; height:64px; }
+    .lang-overlay-characteristics,
+    .framework-detail-content { grid-template-columns:1fr; }
+    .framework-detail-content { padding-left:18px; }
+}
